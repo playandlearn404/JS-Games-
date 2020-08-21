@@ -1,3 +1,4 @@
+// Creating Engine, World and Bodies
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -5,11 +6,12 @@ const Body = Matter.Body;
 const Constraint = Matter.Constraint;
 
 function setup() {
+	// Creating Canvas
 	createCanvas(800, 700);
 
 	engine = Engine.create();
 	world = engine.world;
-
+	// Creating Non static balls
 	particle1 = new Particle(75, 50, 10, "dodgerblue");
 	particle2 = new Particle(100, 50, 10, "rebeccapurple");
 	particle3 = new Particle(150, 50, 10, "salmon");
@@ -25,7 +27,7 @@ function setup() {
 	particle13 = new Particle(650, 50, 10, "maroon");
 	particle14 = new Particle(700, 50, 10, "SandyBrown");
 	particle15 = new Particle(750, 50, 10, "tomato");
-
+	// Creating static obstacles
 	ball1 = new Ball(75, 200, 10, "crimson");
 	ball2 = new Ball(150, 200, 10, "crimson");
 	ball3 = new Ball(225, 200, 10, "crimson");
@@ -71,8 +73,9 @@ function setup() {
 	ball40 = new Ball(568, 425, 10, "crimson");
 	ball41 = new Ball(643, 425, 10, "crimson");
 	ball42 = new Ball(718, 425, 10, "crimson");
-
+	// Creating ground
 	ground = new Wall(400, 680, 800, 10);
+	//Creating diversions
 	wall0 = new Wall(5, 350, 10, 700);
 	wall1 = new Wall(100, 600, 10, 150);
 	wall2 = new Wall(200, 600, 10, 150);
@@ -90,7 +93,9 @@ function setup() {
 
 
 function draw() {
+	// Setting background color to white
 	background("white");
+	//Displaying the created bodies
 	ball1.display();
 	ball2.display();
 	ball3.display();

@@ -1,3 +1,4 @@
+// Creating Engine, World, Body
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -5,10 +6,13 @@ const Body = Matter.Body;
 const Constraint = Matter.Constraint
 
 function setup() {
+	// Creating Canvas
 	createCanvas(1450, 750);
 
 	engine = Engine.create();
 	world = engine.world;
+
+	// Creating rectangle obstacles
 	rect4_1 = new Rectangle(850, 600, "crimson");
 	rect4_2 = new Rectangle(900, 600, "darkviolet");
 	rect4_3 = new Rectangle(950, 600, "aquamarine");
@@ -25,6 +29,7 @@ function setup() {
 	rect2_2 = new Rectangle(1000, 500, "coral");
 	rect2_3 = new Rectangle(1050, 500, "LightGreen");
 	rect1_1 = new Rectangle(1000, 425, "DodgerBlue");
+	// Creating ground
 	ground = new Ground(725, 730, 1450, 10);
 	ground2 = new Ground(1000, 650, 400, 10);
 
@@ -46,6 +51,7 @@ function setup() {
 	rect2_1_1 = new Rectangle(750 + 25, 70, "DodgerBlue");
 	ground3 = new Ground(800, 325, 400, 10);
 
+	// Creating body attached to slingshot
 	hexagon = new Hexagon(100, 650, 20);
 	chain = new SlingShot(hexagon.body, {x:200, y:400})
 
@@ -54,8 +60,10 @@ function setup() {
 
 
 function draw() {
+	// Setting background color to white
 	background("white");
 	Engine.update(engine)
+	// Displaying objects
 	rect4_1.display();
 	rect4_2.display();
 	rect4_3.display();
@@ -96,14 +104,16 @@ function draw() {
 	ground3.display();
 	drawSprites();
 }
+
+// For draging the body back
 function mouseDragged() {
     Matter.Body.setPosition(hexagon.body, {x:mouseX, y: mouseY});
 }
-
+// When mouse is released then this function will work
 function mouseReleased() {
 	chain.fly();
 }
-
+// Function to attach the body back to slingshot
 function keyPressed() {
     if (keyCode === 32) {
         chain.attach(hexagon.body);
